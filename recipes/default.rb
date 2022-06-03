@@ -20,14 +20,11 @@ else
   end
 end
 
-if ::File.exist?('C:\Chef\client.rb')
-  node.default['chef']['installdate'] = ::File.ctime('C:\Chef\client.rb')
-  log "Chef Install Date #{node['chef']['installdate']}."
-elsif ::File.exist?('/etc/chef/client.rb')
-  node.default['chef']['installdate'] = ::File.ctime('/etc/chef/client.rb')
+if ::File.exist?(node['chef']['filepath'])
+  node.default['chef']['installdate'] = ::File.ctime(node['chef']['filepath'])
   log "Chef Install Date #{node['chef']['installdate']}."
 else
-  log 'Chef Client is not Installed' do
+  log "Chef Client is not Installed. Path #{node['chef']['filepath']}" do
     level :info
   end
 end
