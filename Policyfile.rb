@@ -4,11 +4,10 @@
 name 'chef-client'
 
 # Where to find external cookbooks:
-default_source :chef_repo, '~/chef-repo/cookbooks' do |s|
-  s.preferred_for 'chef-client'
-end
-default_source :supermarket
-default_source :chef_server, 'https://snohio.azure.chef-demo.com/organizations/it_devops'
+# default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
 run_list 'chef-client::default'
+
+# Specify a custom source for a single cookbook:
+cookbook 'chef-client', path: '.'

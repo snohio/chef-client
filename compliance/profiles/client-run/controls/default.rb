@@ -10,7 +10,7 @@ control 'chef-client' do
     end
   else
     describe crontab(path: '/etc/cron.d/chef-client') do
-      it {should exist}
+      it { should exist }
       its('minutes') { should include '5' }
     end
   end
