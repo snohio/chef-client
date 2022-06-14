@@ -42,7 +42,7 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[diiv::default]
+      - recipe[chef-client::default]
     verifier:
       inspec_tests:
         - compliance/profiles/client-run/controls
