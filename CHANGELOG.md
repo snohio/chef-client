@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.2.0
+
+- Moved the date stamp function to it's own recipe to make walk throughs easier.
+
 ## 1.1.1
 
 - Someone asked how to record when the client was created in an attribute.

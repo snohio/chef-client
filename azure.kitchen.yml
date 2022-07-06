@@ -1,0 +1,56 @@
+---
+driver:
+  name: azurerm
+  subscription_id: 'b02e675a-cee0-49bd-a056-daa7ed05bf4e'
+  location: 'East US'
+  machine_size: 'Standard_D2s_v3'
+  azure_resource_group_prefix: 'butler-tk'
+  resource_group_tags:
+   X-TTL: '24'
+
+  
+provisioner:
+  name: chef_infra
+  always_update_cookbooks: true
+  product_name: chef
+  product_version: 17
+  channel: stable
+
+verifier:
+  name: inspec
+
+platforms:
+
+- name: ubuntu
+  driver:
+    image_urn: Canonical:UbuntuServer:18.04-LTS:latest
+  transport:
+    name: ssh
+    ssh_key: ~/.ssh/id_kitchen-azurerm
+
+- name: RHEL7
+  driver:
+    image_urn: RedHat:RHEL:7-LVM:latest
+  transport:
+    name: ssh
+    ssh_key: ~/.ssh/id_kitchen-azurerm
+
+- name: Windows2019
+  os_type: windows
+  transport:
+    name: winrm
+  driver:
+    image_urn: MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest
+    winrm_powershell_script: |-
+      winrm quickconfig -q
+      Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+suites:
+  - name: default
+    run_list:
+      - recipe[chef-client::default]
+    verifier:
+      inspec_tests:
+        - compliance/profiles/client-run/controls
+    attributes:
+      audit:
+        reporter: 'cli'

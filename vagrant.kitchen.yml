@@ -19,7 +19,7 @@ verifier:
 
 platforms:
 
-- name: almalinux-8.5
+- name: almalinux-9
   driver:
     linked_clone: true
   customize:
@@ -50,5 +50,4 @@ suites:
     attributes:
       audit:
         reporter: 'cli'
-      chef:
-        filepath: = 'c:\Users\vagrant\AppData\Local\Temp\kitchen\client.pem'
+
