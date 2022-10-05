@@ -5,6 +5,6 @@ copyright: butler INC
 copyright_email: michael.butler@chef.io
 license: Apache-2.0
 summary: Run the Chef Client every 5 Minutes
-version: 0.1.1
+version: 1.3.0
 supports:
   platform: os

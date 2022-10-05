@@ -2,9 +2,14 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.3.0
+
+- Changed Copyright date
+- Added recipe to hard set the policy group and file in the client.rb for testing.
+
 ## 1.2.0
 
-- Moved the date stamp function to it's own recipe to make walk throughs easier.
+- Moved the date stamp function to it's own recipe to make walk-throughs easier.
 
 ## 1.1.1
 

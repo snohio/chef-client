@@ -8,10 +8,18 @@ control 'chef-client' do
       it { should exist }
       it { should be_enabled }
     end
+    describe package('Chef*') do
+      it { should be_installed }
+      its('version') { should cmp >= '17' }
+    end
   else
     describe crontab(path: '/etc/cron.d/chef-client') do
       it { should exist }
       its('minutes') { should include '5' }
+    end
+    describe package('chef') do
+      it { should be_installed }
+      its('version') { should cmp >= '17' }
     end
   end
 end

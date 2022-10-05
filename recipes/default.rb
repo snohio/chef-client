@@ -2,7 +2,7 @@
 # Cookbook:: chef-client
 # Recipe:: default
 #
-# Copyright:: 2021, Mike Butler, All Rights Reserved.
+# Copyright:: 2022, Mike Butler, All Rights Reserved.
 
 include_profile 'chef-client::client-run'
 
@@ -21,3 +21,7 @@ else
 end
 
 include_recipe 'chef-client::datestamp'
+
+if tagged?('final')
+  include_recipe 'chef-client::final'
+end

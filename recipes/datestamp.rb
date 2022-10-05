@@ -1,8 +1,8 @@
 #
 # Cookbook:: chef-client
-# Recipe:: default
+# Recipe:: datestamp
 #
-# Copyright:: 2021, Mike Butler, All Rights Reserved.
+# Copyright:: 2022, Mike Butler, All Rights Reserved.
 
 if ::File.exist?(node['chef']['filepath'])
   node.default['chef']['installdate'] = ::File.ctime(node['chef']['filepath'])
