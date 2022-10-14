@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.3.1
+
+- Testing a json out on a full client run
+
 ## 1.3.0
 
 - Changed Copyright date
