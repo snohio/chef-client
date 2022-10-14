@@ -5,7 +5,7 @@ class Chef
 
       def send_to_data_collector(message)
         return unless data_collector_accessible?
-        IO.write('/tmp/converge-status.json', JSON.generate(message))
+        ::FILE.write('/tmp/converge-status.json', JSON.generate(message))
         http.post(nil, message, headers)
       end
     end
