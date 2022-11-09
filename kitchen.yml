@@ -3,42 +3,84 @@ driver:
   name: vagrant
   box_auto_update: true
   box_auto_prune: true
+#  network:
+#    - [ "public_network", { bridge: [ 'en9: StartTech DK30CH2DEP', 'en0: Wi-Fi (Wireless)' ], type: dhcp } ]
 
 provisioner:
-  name: chef_zero
-  always_update_cookbooks: true
+  name: chef_infra
+  retry_on_exit_code:
+    - 35 # 35 is the exit code signaling that the node is rebooting
   product_name: chef
-  product_version: 17
+  product_version: 18
   channel: stable
-
-### Uncomment this setting to have Test Kitchen fail on any deprecation warning; useful in advance of a new chef-client release
-  # deprecations_as_errors: true
+  deprecations_as_errors: true
+  always_update_cookbooks: true
+  chef_license: accept-no-persist
+#  data_bags_path: test/fixtures/data_bags
+#  encrypted_data_bag_secret_key_path: ~/.chef/encrypted_data_bag_secret
 
 verifier:
   name: inspec
 
 platforms:
-
-- name: almalinux-8.5
-  driver:
-    linked_clone: true
-  customize:
-    cpus: 2
-    memory: 2048
-
-- name: stromweld/windows-2022
-  os_type: windows
-  transport:
-    name: winrm
-    elevated: true
-    elevated_username: vagrant
-    elevated_password: vagrant
-  driver:
-    box_name: windows-2022
-    customize:
-      cpus: 2
-      memory: 2048
-
+  - name: almalinux-8
+  - name: almalinux-9
+  - name: amazonlinux-2
+  # - name: amazonlinux-2022
+  - name: centos-7
+  - name: centos-8
+  - name: debian-10
+  - name: debian-11
+  - name: ubuntu-20.04
+  - name: ubuntu-22.04
+  - name: windows-10
+    driver:
+      box: stromweld/windows-10
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
+  - name: windows-11
+    driver:
+      box: stromweld/windows-11
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
+  - name: windows-2012r2
+    driver:
+      box: stromweld/windows-2012r2
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
+  - name: windows-2016
+    driver:
+      box: stromweld/windows-2016
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
+  - name: windows-2019
+    driver:
+      box: stromweld/windows-2019
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
+  - name: windows-2022
+    driver:
+      box: stromweld/windows-2022
+      gui: true
+      customize:
+        clipboard-mode: bidirectional
+        draganddrop: bidirectional
+        memory: 4096
 
 suites:
   - name: default

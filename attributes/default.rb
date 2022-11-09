@@ -7,3 +7,5 @@ when 'windows'
   default['chef']['filepath'] = 'c:\chef\client.pem'
 
 end
+
+default['chef']['client']['version'] = '17.10.3'

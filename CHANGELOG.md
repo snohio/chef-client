@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.4.0
+
+- Tested against Client 18 and passed
+- Added dependency on chef_client_updater
+  - Checks to see what version should be installed
+  - Upgrades to latest if desired version is > current version (Work still needed)
+
 ## 1.3.2 + Falling Forward
 
 - Returning to function like 1.3.1. You can actually modify the client.rb temporarily to do this now

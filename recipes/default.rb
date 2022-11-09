@@ -6,6 +6,10 @@
 
 include_profile 'chef-client::client-run'
 
+if node['chef']['client']['version'] > node['chef_packages']['chef']['version']
+  include_recipe 'chef_client_updater::default'
+end
+
 if platform?('windows')
   chef_client_scheduled_task 'Run Chef Infra Client every 5 minutes' do
     frequency 'minute'
