@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.4.1
+
+- Added attributes for compliance to the Attributes. This was required for running the compliance phase in the berks model.
+
 ## 1.4.0
 
 - Tested against Client 18 and passed
