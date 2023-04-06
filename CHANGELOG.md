@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.5.0
+
+- Moving Linux recipe to use systemd rather than cron.
+  - This is apparently the new pattern that we want to set going forward for all linux systems that support systemd\
+  - Updated the Inspec test to match
+
 ## 1.4.1
 
 - Added attributes for compliance to the Attributes. This was required for running the compliance phase in the berks model.

@@ -13,9 +13,10 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   else
-    describe crontab(path: '/etc/cron.d/chef-client') do
-      it { should exist }
-      its('minutes') { should include '5' }
+    describe systemd_service('chef-client.timer') do
+      it { should be_installed }
+      it { should be_enabled }
+      it { should be_running }      
     end
     describe package('chef') do
       it { should be_installed }

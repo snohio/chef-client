@@ -94,3 +94,5 @@ suites:
         reporter: 'cli'
       chef:
         filepath: = 'c:\Users\vagrant\AppData\Local\Temp\kitchen\client.pem'
+        client:
+          version: '17.10.0'
