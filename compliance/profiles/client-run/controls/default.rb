@@ -16,7 +16,10 @@ control 'chef-client' do
     describe systemd_service('chef-client.timer') do
       it { should be_installed }
       it { should be_enabled }
-      it { should be_running }      
+      it { should be_running }
+    end
+    describe file('/etc/systemd/system/chef-client.timer') do
+      its('content') { should include('OnUnitActiveSec=5min') }
     end
     describe package('chef') do
       it { should be_installed }

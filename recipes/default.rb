@@ -19,8 +19,8 @@ if platform?('windows')
   end
 else
   chef_client_systemd_timer 'chef-client' do
-    interval = '5min'
-    accept_chef_license = true
+    interval '5min'
+    accept_chef_license true
   end
 end
 

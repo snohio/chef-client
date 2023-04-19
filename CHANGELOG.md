@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.5.1
+
+- bug in `chef_client_systemd_timer` resource that Cookstyle would have caught. :facepalm:
+
 ## 1.5.0
 
 - Moving Linux recipe to use systemd rather than cron.
