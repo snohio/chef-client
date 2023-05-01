@@ -1,0 +1,77 @@
+---
+on:
+  pull_request:
+
+jobs:
+  markdownlint:
+    uses: snohio/github-workflows/.github/workflows/markdown-lint.yml@main
+
+  yamllint:
+    uses: snohio/github-workflows/.github/workflows/yaml-lint.yml@main
+
+  jsonlint:
+    uses: snohio/github-workflows/.github/workflows/json-lint.yml@main
+
+  cookstylelint:
+    uses: snohio/github-workflows/.github/workflows/cookstyle-lint.yml@main
+
+  integration-dokken:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - amazonlinux-2023
+          - centos-7
+          - centos-stream-8
+          - centos-stream-9
+          - almalinux-8
+          - almalinux-9
+          - rockylinux-8
+          - rockylinux-9
+          - ubuntu-2004
+          - ubuntu-2204
+        suite:
+          - default
+          - automate
+          - supermarket
+      fail-fast: false
+    steps:
+      - name: Check out code
+        uses: actions/checkout@main
+      - name: Install Chef
+        uses: actionshub/chef-install@main
+      - name: Test-Kitchen Converge
+        uses: actionshub/test-kitchen@main
+        with:
+          suite: ${{ matrix.suite }}
+          os: ${{ matrix.os }}
+          action: converge
+        env:
+          CHEF_LICENSE: accept-no-persist
+          KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+      - name: Test-Kitchen Verify
+        uses: actionshub/test-kitchen@main
+        with:
+          suite: ${{ matrix.suite }}
+          os: ${{ matrix.os }}
+          action: verify
+        env:
+          CHEF_LICENSE: accept-no-persist
+          KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+
+  check:
+    if: always()
+    needs:
+      - markdownlint
+      - yamllint
+      - jsonlint
+      - cookstylelint
+      - integration-dokken
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@main
+        with:
+          allowed-failures: true
+          allowed-skips: true
+          jobs: ${{ toJSON(needs) }}
