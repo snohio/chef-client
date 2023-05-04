@@ -17,11 +17,6 @@ jobs:
 
   integration-azure:
     runs-on: ubuntu-latest
-    needs:
-      - markdownlint
-      - yamllint
-      - jsonlint
-      - cookstylelint
     strategy:
       matrix:
         os:

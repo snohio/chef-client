@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.5.2
+
+- Not a change to the cookbook per se, but added github workflows for cookstyle, kitchen testing and more.
+- Check the [workflows README](.github/workflows/README.md) for information on all of the examples!!
+- Starting the prep work for the next version to include Mac_Os_X family now that I can test it!
+
 ## 1.5.1
 
 - bug in `chef_client_systemd_timer` resource that Cookstyle would have caught. :facepalm:
