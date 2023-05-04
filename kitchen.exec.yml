@@ -11,6 +11,9 @@ transport:
 platforms:
   - name: windows-2019
   - name: windows-2022
+  - name: macos-latest
+  - name: ubuntu-20.04
+  - name: ubuntu-22.04
 
 suites:
   - name: default
