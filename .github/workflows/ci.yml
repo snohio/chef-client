@@ -31,7 +31,7 @@ jobs:
       - name: Test-Kitchen Create
         uses: actionshub/test-kitchen@main
         with:
-          os: ${{ matrix.os }}
+          os: windows-2022
           action: create
         env:
           CHEF_LICENSE: accept-no-persist
