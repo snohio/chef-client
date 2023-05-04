@@ -4,7 +4,7 @@ driver:
   subscription_id: <%= ENV["AZURE_SUBSCRIPTION_ID"] %>
   location: 'East US'
   machine_size: 'Standard_D2s_v3'
-  azure_resource_group_prefix: 'GA-CHEF_CLIENT'
+  azure_resource_group_prefix: 'GA-CHEF_CLIENT-'
   resource_group_tags:
    X-TTL: '2'
 

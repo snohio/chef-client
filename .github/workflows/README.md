@@ -70,7 +70,7 @@ Besides being metal, this is your quickest test suite. Not sure what else to say
 
 ## Mix and Match
 
-Feel free to take these examples of the different options and mix and match what fits your needs. In my final ci.yml I have done that so that I can include MacOS in my testing suite. It does mean that there is more to update as needed (such as client version) because those kitchen.xxx.yml files all need updated. 
+Feel free to take these examples of the different options and mix and match what fits your needs. In my final ci.yml I have done that so that I can include MacOS in my testing suite. It does mean that there is more to update as needed (such as client version) because those kitchen.xxx.yml files all need updated.
 
 ## In Conclusion
 
