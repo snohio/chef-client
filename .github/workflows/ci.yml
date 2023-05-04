@@ -19,9 +19,8 @@ jobs:
     strategy:
       matrix:
         os:
+          - almalinux-9
           - stromweld/windows-2022
-        suite:
-          - default
       fail-fast: false
     steps:
       - name: Check out code
@@ -31,7 +30,7 @@ jobs:
       - name: Test-Kitchen Create
         uses: actionshub/test-kitchen@main
         with:
-          os: windows-2022
+          os: ${{ matrix.os }}
           action: create
         env:
           CHEF_LICENSE: accept-no-persist
@@ -40,7 +39,7 @@ jobs:
       - name: Test-Kitchen Converge
         uses: actionshub/test-kitchen@main
         with:
-          suite: ${{ matrix.suite }}
+          suite: default
           os: ${{ matrix.os }}
           action: converge
         env:
