@@ -210,7 +210,7 @@ jobs:
       - integration-windows-2022
       - integration-ubuntu-20_04
       - integration-ubuntu-22_04
-      - integration-macos-latest
+      - integration-macos
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether the needed jobs succeeded or failed

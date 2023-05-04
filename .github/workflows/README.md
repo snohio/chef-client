@@ -41,3 +41,7 @@ This is an example of Local Exec testing. This will provision runners and execut
 ### Concerns of Exec
 
 * These systems are bandwidth limited and installing the Chef Workstation and Client, especially on Windows, can take a little bit of time (8 - 10 minutes).
+
+## ci.yml.vagrant
+
+Utilizing the Vagrant method, it will create a MacOS Runner which has included VirtualBox and Vagrant. ()
