@@ -32,6 +32,7 @@ jobs:
         uses: actionshub/chef-install@main
       - name: Azure Credentials
         run: | 
+          mkdir ~./azure
           cat > ~/.azure/credentials << EOF
           [${{ secrets.SUBSCRIPTION_ID }}]
           client_id = "${{ secrets.CLIENT_ID }}"
