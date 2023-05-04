@@ -15,7 +15,6 @@ jobs:
     uses: snohio/github-workflows/.github/workflows/cookstyle-lint.yml@main
 
   kitchen-vagrant:
-    needs: [mdl, yamllint, delivery]
     runs-on: macos-latest
     strategy:
       matrix:
