@@ -130,7 +130,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-20.04
+          - ubuntu-2004
         suite:
           - default
       fail-fast: false
@@ -172,7 +172,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-22.04
+          - ubuntu-2204
         suite:
           - default
       fail-fast: false
@@ -208,6 +208,9 @@ jobs:
       - cookstylelint
       - integration-windows-2019
       - integration-windows-2022
+      - integration-ubuntu-20_04
+      - integration-ubuntu-22_04
+      - integration-macos-latest
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether the needed jobs succeeded or failed
