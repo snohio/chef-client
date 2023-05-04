@@ -90,6 +90,6 @@ jobs:
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@main
         with:
-          allowed-failures: true
-          allowed-skips: true
+          allowed-failures: 
+          allowed-skips: 
           jobs: ${{ toJSON(needs) }}
