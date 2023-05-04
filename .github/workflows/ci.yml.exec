@@ -14,8 +14,8 @@ jobs:
 
   cookstylelint:
     uses: snohio/github-workflows/.github/workflows/cookstyle-lint.yml@main
-  
-  integration-windows-2019:
+
+ integration-windows-2019:
     runs-on: windows-2019
     strategy:
       matrix:
