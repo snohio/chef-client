@@ -20,7 +20,7 @@ This one is the one I test against the most number of OSes. More can be added of
 ### Benefits of Azure
 
 * Likely the fastest provisioning and testing on Windows platforms
-* Ability to test against Windows Workstations (Windows 10 / 11). There are lots of variants of this, so be sure to check the Image URN for what you want. Some of them are locked down from a WinRM perspective so can sometimes be challenging to get the connectivity right. (See the kitchen.azure.yml for the Windows 10 / 11 eaxmples!)
+* Ability to test against Windows Workstations (Windows 10 / 11). There are lots of variants of this, so be sure to check the Image URN for what you want. Some of them are locked down from a WinRM perspective so can sometimes be challenging to get the connectivity right. (See the kitchen.azure.yml for the Windows 10 / 11 examples!)
 
 ### Concerns of Azure
 
@@ -44,4 +44,32 @@ This is an example of Local Exec testing. This will provision runners and execut
 
 ## ci.yml.vagrant
 
-Utilizing the Vagrant method, it will create a MacOS Runner which has included VirtualBox and Vagrant. ()
+Utilizing the Vagrant method, it will create a MacOS Runner which has included VirtualBox and Vagrant. (Side note: I find is funny that you can use Github's MacOs runner with VB and Vagrant, but can't on a M1 chip.)
+
+### Benefits of Vagrant
+
+* If you are used to running Vagrant and VirtualBox for local testing, this would be the most straight forward way for continuity.
+* You can use the stromweld Windows platforms from BentoBox.
+
+### Concerns of Vagrant
+
+* S L O W - Mostly for Windows. My checks were running about 15 minutes on Windows.
+
+## ci.yml.dokken
+
+Besides being metal, this is your quickest test suite. Not sure what else to say here. It works on a Ubuntu runner.
+
+### Benefits of Dokken
+
+* Blazing fast results.
+
+### Concerns of Dokken
+
+* Limited by OSes available in a container (meaning no Windows or Mac)
+* Results MAY vary if installing applications and validating they are installed. For this `chef-client` cookbook, it does not return that Chef is installed and has the correct version.
+
+## In Conclusion
+
+This was probably the most fun of an exercise I have engaged in this year. It has been on my To Do list for awhile and I've been scared of it. With just a little help, I've really discovered the power of Github Actions and it is very cool what can be done.
+
+Shout Out to Jason Field and Dan Webb who's actions are utilized in these examples. Please check out their [Actions Hub Org](https://github.com/actionshub) on GitHub as well as contribute to their efforts on [Open Collective](https://opencollective.com/actionshub) and [Corey Hemminger](https://github.com/stromweld) for holding my hand through this exercise.
