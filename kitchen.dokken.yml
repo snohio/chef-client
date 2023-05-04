@@ -81,3 +81,14 @@ platforms:
       pid_one_command: /bin/systemd
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
+
+suites:
+  - name: default
+    run_list:
+      - recipe[chef-client::default]
+    verifier:
+      inspec_tests:
+        - compliance/profiles/client-run/controls
+    attributes:
+      audit:
+        reporter: 'cli'

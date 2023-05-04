@@ -1,3 +1,4 @@
+---
 on:
   pull_request:
 
@@ -14,13 +15,19 @@ jobs:
   cookstylelint:
     uses: snohio/github-workflows/.github/workflows/cookstyle-lint.yml@main
 
-  kitchen-vagrant:
-    needs: [mdl, yamllint, delivery]
-    runs-on: macos-latest
+  integration-dokken:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         os:
-          - windows-2022
+          - amazonlinux-2023
+          - centos-7
+          - almalinux-8
+          - almalinux-9
+          - rockylinux-8
+          - rockylinux-9
+          - ubuntu-2004
+          - ubuntu-2204
         suite:
           - default
       fail-fast: false
@@ -37,8 +44,7 @@ jobs:
           action: converge
         env:
           CHEF_LICENSE: accept-no-persist
-          KITCHEN_LOCAL_YAML: kitchen.vagrant.yml
-          TERM: xterm-256color
+          KITCHEN_LOCAL_YAML: kitchen.dokken.yml
       - name: Test-Kitchen Verify
         uses: actionshub/test-kitchen@main
         with:
@@ -47,4 +53,21 @@ jobs:
           action: verify
         env:
           CHEF_LICENSE: accept-no-persist
-          KITCHEN_LOCAL_YAML: kitchen.azure.yml
+          KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+
+  check:
+    if: always()
+    needs:
+      - markdownlint
+      - yamllint
+      - jsonlint
+      - cookstylelint
+      - integration-dokken
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@main
+        with:
+          allowed-failures: true
+          allowed-skips: true
+          jobs: ${{ toJSON(needs) }}
