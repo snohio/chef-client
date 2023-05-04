@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-2022
+          - stromweld/windows-2022
         suite:
           - default
       fail-fast: false
@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@main
       - name: Install Chef
         uses: actionshub/chef-install@main
-      - name: Test-Kitchen Converge
+      - name: Test-Kitchen Create
         uses: actionshub/test-kitchen@main
         with:
           suite: ${{ matrix.suite }}
@@ -56,4 +56,4 @@ jobs:
           action: verify
         env:
           CHEF_LICENSE: accept-no-persist
-          KITCHEN_LOCAL_YAML: kitchen.azure.yml
+          KITCHEN_LOCAL_YAML: kitchen.vagrant.yml
