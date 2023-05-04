@@ -28,16 +28,11 @@ platforms:
 
 - name: windows-2022
   os_type: windows
-  transport:
-    name: winrm
-    elevated: true
-    elevated_username: vagrant
-    elevated_password: vagrant
   driver:
     box_name: stromweld/windows-2022
     customize:
       cpus: 2
-      memory: 2048
+      memory: 4096
 
 
 suites:
