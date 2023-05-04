@@ -18,9 +18,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        os:
-          - almalinux-9
-          - stromweld/windows-2022
+        os: ['windows-2022', 'almalinux-9']
         suite: ['default']
       fail-fast: false
     steps:
