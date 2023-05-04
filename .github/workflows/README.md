@@ -2,7 +2,7 @@
 
 Here are four examples of CI workflows that run Chef Test Kitchen in the github runners. There is a matching kitchen.xxx.yml in the root of the repository that drives the kitchen test
 
-Rename (or copy) the content from any of the following examples into the ci.yml and push the new version.
+Rename (or copy) the content from any of the following examples into the ci.yml and push the new version. See Mix and Match at the bottom of this doc.
 
 ## ci.yml.azure
 
@@ -67,6 +67,10 @@ Besides being metal, this is your quickest test suite. Not sure what else to say
 
 * Limited by OSes available in a container (meaning no Windows or Mac)
 * Results MAY vary if installing applications and validating they are installed. For this `chef-client` cookbook, it does not return that Chef is installed and has the correct version.
+
+## Mix and Match
+
+Feel free to take these examples of the different options and mix and match what fits your needs. In my final ci.yml I have done that so that I can include MacOS in my testing suite. It does mean that there is more to update as needed (such as client version) because those kitchen.xxx.yml files all need updated. 
 
 ## In Conclusion
 
