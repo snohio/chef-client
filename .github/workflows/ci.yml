@@ -21,6 +21,7 @@ jobs:
         os:
           - almalinux-9
           - stromweld/windows-2022
+        suite: ['default']
       fail-fast: false
     steps:
       - name: Check out code
@@ -39,7 +40,7 @@ jobs:
       - name: Test-Kitchen Converge
         uses: actionshub/test-kitchen@main
         with:
-          suite: default
+          suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
           action: converge
         env:
