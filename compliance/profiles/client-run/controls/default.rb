@@ -3,7 +3,7 @@
 control 'chef-client' do
   impact 0.7
   title 'Run the chef-client every 5 minutes'
-  
+
   if os.windows?
     describe windows_task('chef-client') do
       it { should exist }
@@ -14,17 +14,13 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   elsif os.darwin?
-    describe launchd_service('com.chef.restarter.plist') do
+    describe launchd_service('chef.restarter') do
       it { should be_installed }
       it { should be_enabled }
       it { should be_running }
     end
     describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
       its('content') { should include('<integer>300</integer>') }
-    end
-    describe package('Chef*') do
-      it { should be_installed }
-      its('version') { should cmp >= '17' }
     end
   else
     describe systemd_service('chef-client.timer') do

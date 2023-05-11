@@ -26,8 +26,9 @@ when 'mac_os_x'
     action :enable
     accept_chef_license true
   end
-  include_recipe 'chef-client::macos'
-
+  if tagged?('debug')
+    include_recipe 'chef-client::macos'
+  end
 when 'rhel', 'debian'
   chef_client_systemd_timer 'chef-client' do
     interval '5min'
