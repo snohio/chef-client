@@ -35,3 +35,17 @@
           env:
             CHEF_LICENSE: accept-no-persist
             KITCHEN_LOCAL_YAML: kitchen.exec.yml
+    check:
+      if: always()
+      needs:
+        - integration-macos
+  
+      runs-on: ubuntu-latest
+      steps:
+        - name: Decide whether the needed jobs succeeded or failed
+          uses: re-actors/alls-green@main
+          with:
+            allowed-failures: 
+            allowed-skips: 
+            jobs: ${{ toJSON(needs) }}
+  
