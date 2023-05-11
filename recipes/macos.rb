@@ -9,6 +9,7 @@ bash 'oahi' do
   ohai
   EOH
   action :run
+  live_stream true
 end
 
 bash 'launchctl list' do
