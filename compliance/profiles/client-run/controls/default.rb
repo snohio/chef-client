@@ -14,7 +14,7 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   elsif os.darwin?
-    describe launchd_service('com.chef.chef-client') do
+    describe service('com.chef.restarter') do
       it { should be_installed }
       it { should be_enabled }
       it { should be_running }
