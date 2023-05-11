@@ -19,9 +19,9 @@ suites:
   - name: default
     run_list:
       - recipe[chef-client::default]
-#    verifier:
-#      inspec_tests:
-#       - compliance/profiles/client-run/controls
+    verifier:
+      inspec_tests:
+       - compliance/profiles/client-run/controls
     attributes:
       audit:
         reporter: 'cli'
