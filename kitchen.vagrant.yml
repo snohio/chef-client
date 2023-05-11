@@ -19,21 +19,40 @@ verifier:
 
 platforms:
 
-- name: almalinux-9
-  driver:
-    linked_clone: true
-  customize:
-    cpus: 2
-    memory: 2048
-
-- name: windows-2022
-  os_type: windows
-  driver:
-    box_name: stromweld/windows-2022
+  - name: almalinux-9
+    driver:
+      linked_clone: true
     customize:
       cpus: 2
-      memory: 4096
-
+      memory: 2048
+  - name: windows-2019
+    os_type: windows
+    driver:
+      box: stromweld/windows-2019
+      customize:
+        cpus: 2
+        memory: 4096
+  - name: windows-2022
+    os_type: windows
+    driver:
+      box: stromweld/windows-2022
+      customize:
+        cpus: 2
+        memory: 4096
+  - name: windows-10
+    os_type: windows
+    driver:
+      box: stromweld/windows-10
+      customize:
+        cpus: 2
+        memory: 4096
+  - name: windows-2022
+    os_type: windows
+    driver:
+      box: stromweld/windows-2022
+      customize:
+        cpus: 2
+        memory: 4096
 
 suites:
   - name: default

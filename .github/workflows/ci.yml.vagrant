@@ -19,8 +19,11 @@ jobs:
     strategy:
       matrix:
         os: 
-          - windows-2022
           - almalinux-9
+          - windows-10
+          - windows-11
+          - windows-2019
+          - windows-2022
         suite: 
           - default
       fail-fast: false
