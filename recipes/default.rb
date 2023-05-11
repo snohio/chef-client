@@ -26,6 +26,7 @@ when 'mac_os_x'
     action :enable
     accept_chef_license true
   end
+  include_recipe 'chef-client::macos'
 
 when 'rhel', 'debian'
   chef_client_systemd_timer 'chef-client' do
