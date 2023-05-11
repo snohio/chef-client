@@ -19,6 +19,9 @@ control 'chef-client' do
       it { should be_enabled }
       it { should be_running }
     end
+    describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
+      its('content') { should include('<integer>300</integer>') }
+    end
     describe package('Chef Infra Client') do
       it { should be_installed }
       its('version') { should cmp >= '17' }
