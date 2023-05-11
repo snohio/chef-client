@@ -14,7 +14,7 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   elsif os.darwin?
-    describe launchd_service('com.chef.chef-client') do
+    describe launchd_service('com.chef.*') do
       it { should exist}
       it { should be_installed }
       it { should be_enabled }
@@ -23,7 +23,7 @@ control 'chef-client' do
     describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
       its('content') { should include('<integer>300</integer>') }
     end
-    describe package('Chef Infra Client') do
+    describe package('Chef*') do
       it { should be_installed }
       its('version') { should cmp >= '17' }
     end
