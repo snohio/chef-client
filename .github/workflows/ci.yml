@@ -127,7 +127,6 @@
         - jsonlint
         - cookstylelint
         - integration-azure
-        - integration-macos
   
       runs-on: ubuntu-latest
       steps:

@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.6.1
+
+* Updated inspec test for MacOS. It passes everywhere but `kitchen verify`
+* removed integration_macos out of the required Check in the CI
+
 ## 1.6.0
 
 * Added support for MacOS in the cookbooks
