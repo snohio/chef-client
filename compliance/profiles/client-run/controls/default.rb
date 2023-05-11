@@ -14,12 +14,12 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   elsif os.darwin?
-    describe launchd_service('com.chef.restarter') do
+    describe launchd_service('com.chef.chef-client') do
       it { should be_installed }
       it { should be_enabled }
       it { should be_running }
     end
-    describe package('chef*') do
+    describe package('Chef Infra Client') do
       it { should be_installed }
       its('version') { should cmp >= '17' }
     end
