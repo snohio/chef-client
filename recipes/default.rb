@@ -34,7 +34,6 @@ when 'rhel', 'debian'
     interval '5min'
     accept_chef_license true
   end
-
 end
 
 include_recipe 'chef-client::datestamp'
