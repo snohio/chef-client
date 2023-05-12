@@ -7,7 +7,11 @@ driver:
 
 transport:
   name: exec
-  
+
+verifier:
+  name: inspec
+  sudo: true  
+
 platforms:
   - name: windows-2019
   - name: windows-2022
