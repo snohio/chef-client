@@ -2,7 +2,6 @@
 # Cookbook:: chef-client
 # Recipe:: final
 #
-# Copyright:: 2022, Mike Butler, All Rights Reserved.
 
 chef_client_config 'client.rb' do
   node_name node['machinename']

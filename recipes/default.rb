@@ -2,11 +2,11 @@
 # Cookbook:: chef-client
 # Recipe:: default
 #
-# Copyright:: 2022, Mike Butler, All Rights Reserved.
 
 include_profile 'chef-client::client-run'
 
 if node['chef']['client']['version'] > node['chef_packages']['chef']['version']
+  node.default['chef_client_updater']['version'] = node['chef']['client']['version']
   include_recipe 'chef_client_updater::default'
 end
 
@@ -30,6 +30,14 @@ when 'mac_os_x'
     include_recipe 'chef-client::macos'
   end
 when 'rhel', 'debian'
+  chef_client_cron 'chef_client_run' do
+    action :remove
+  end
+
+  cron_d 'chef_client_run' do
+    action :delete
+  end
+
   chef_client_systemd_timer 'chef-client' do
     interval '5min'
     accept_chef_license true
