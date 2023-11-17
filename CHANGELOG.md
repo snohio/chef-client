@@ -8,6 +8,10 @@ This file is used to list changes made in each version of the chef-client cookbo
 * Added a default for channel. This can be overwritten by policyfile or elsewhere.
 * Mostly tested platform updates
 
+## 1.6.2
+
+* No changes. Needed to re-trigger the pipeline
+
 ## 1.6.1
 
 * Updated inspec test for MacOS. It passes everywhere but `kitchen verify`
