@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.7.0
+
+* Enhancements to chef_client_updater to now update to the version specified in the attribute
+* Added a default for channel. This can be overwritten by policyfile or elsewhere.
+* Mostly tested platform updates
+
 ## 1.6.2
 
 * No changes. Needed to re-trigger the pipeline
