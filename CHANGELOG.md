@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.7.1
+
+* Adding AZURE_TAGS variables to be pulled from Github Actions to follow Progress standards for kitchen
+* Fixed CRLF/LF issues (again?)
+
 ## 1.7.0
 
 * Enhancements to chef_client_updater to now update to the version specified in the attribute

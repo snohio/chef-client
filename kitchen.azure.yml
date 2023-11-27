@@ -6,7 +6,12 @@ driver:
   machine_size: 'Standard_D2s_v3'
   azure_resource_group_prefix: 'GA-CHEF_CLIENT-'
   resource_group_tags:
-   X-TTL: '2'
+    X-TTL: '2'
+    application: 'chef-infra'
+    team: 'infra-se'
+    owner: 'michael.butler@progress.com'
+    expiration: '2025-09-30'
+    ephemeral: 'no'
 
 provisioner:
   name: chef_infra
@@ -65,9 +70,6 @@ platforms:
     elevated: true
   driver:
     image_urn: MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest
-#    winrm_powershell_script: |-
-#      winrm quickconfig -q
-#      Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
 
 - name: Windows2022
   os_type: windows
