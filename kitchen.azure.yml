@@ -5,13 +5,7 @@ driver:
   location: 'East US'
   machine_size: 'Standard_D2s_v3'
   azure_resource_group_prefix: 'GA-CHEF_CLIENT-'
-  resource_group_tags:
-    X-TTL: '2'
-    application: 'chef-infra'
-    team: 'infra-se'
-    owner: 'michael.butler@progress.com'
-    expiration: '2025-09-30'
-    ephemeral: 'no'
+  resource_group_tags: <%= ENV["AZURE_TAGS"] %>
 
 provisioner:
   name: chef_infra
