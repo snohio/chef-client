@@ -27,7 +27,7 @@ control 'chef-client' do
     end
     describe bash('pkgutil --pkgs | grep chef | xargs -I% pkgutil --pkg-info=%') do
       its('stdout') { should include('com.getchef.pkg.chef') }
-      its('stdout') { should include('version: 18.2.7') }
+      its('stdout') { should include('version: 18.3.0') }
     end
   else
     describe systemd_service('chef-client.timer') do
