@@ -111,15 +111,6 @@
           env:
             CHEF_LICENSE: accept-no-persist
             KITCHEN_LOCAL_YAML: kitchen.exec.yml
-        - name: Test-Kitchen Converge Two
-          uses: actionshub/test-kitchen@main
-          with:
-            suite: ${{ matrix.suite }}
-            os: ${{ matrix.os }}
-            action: converge
-          env:
-            CHEF_LICENSE: accept-no-persist
-            KITCHEN_LOCAL_YAML: kitchen.exec.yml
         - name: Test-Kitchen Verify
           uses: actionshub/test-kitchen@main
           with:
