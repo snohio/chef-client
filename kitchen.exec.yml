@@ -1,6 +1,7 @@
 ---
 driver:
   name: exec
+  privileged: true
   gui: false
   customize:
     memory: 4096
@@ -21,7 +22,7 @@ suites:
       - recipe[chef-client::default]
     verifier:
       name: inspec
-      sudo: true  
+      sudo: true
       inspec_tests:
        - compliance/profiles/client-run/controls
     attributes:
