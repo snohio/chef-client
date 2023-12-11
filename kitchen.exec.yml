@@ -2,6 +2,7 @@
 driver:
   name: exec
   gui: false
+  privileged: true
   customize:
     memory: 4096
 
