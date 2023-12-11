@@ -14,20 +14,21 @@ control 'chef-client' do
       its('version') { should cmp >= '17' }
     end
   elsif os.darwin?
-    describe launchd_service('chef.restarter') do
-      it { should be_installed }
-      it { should be_enabled }
-    end
-    describe launchd_service('chef.chef-client') do
-      it { should be_installed }
-      it { should be_enabled }
-    end
+# THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
+#    describe launchd_service('chef.restarter') do
+#      it { should be_installed }
+#      it { should be_enabled }
+#    end
+#    describe launchd_service('chef.chef-client') do
+#      it { should be_installed }
+#      it { should be_enabled }
+#    end
     describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
       its('content') { should include('<integer>300</integer>') }
     end
     describe bash('pkgutil --pkgs | grep chef | xargs -I% pkgutil --pkg-info=%') do
       its('stdout') { should include('com.getchef.pkg.chef') }
-      its('stdout') { should include('version: 18.2.7') }
+      its('stdout') { should include('version: 18.3.0') }
     end
   else
     describe systemd_service('chef-client.timer') do
