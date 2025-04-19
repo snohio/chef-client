@@ -5,6 +5,6 @@ copyright: Snohio
 copyright_email: snohio@gmail.com
 license: Apache-2.0
 summary: Run the Chef Client every 5 Minutes
-version: 1.6.1
+version: 1.7.2
 supports:
   platform: os
