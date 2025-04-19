@@ -1,4 +1,4 @@
-# copyright: 2024, Mike Butler
+# copyright: 2025, Mike Butler
 
 control 'chef-client' do
   impact 0.7
