@@ -65,22 +65,44 @@ platforms:
         clipboard-mode: bidirectional
         draganddrop: bidirectional
         memory: 4096
-  - name: windows-2019
+  - name: Windows2019
+    os_type: windows
+    transport:
+      name: winrm
+      elevated: true
     driver:
-      box: stromweld/windows-2019
-      gui: true
-      customize:
-        clipboard-mode: bidirectional
-        draganddrop: bidirectional
-        memory: 4096
-  - name: windows-2022
+      image_urn: MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest
+      winrm_powershell_script: |-
+        Set-MpPreference -DisableRealtimeMonitoring 1
+        winrm quickconfig -q
+        Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+        Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
+
+  - name: Windows2022
+    os_type: windows
+    transport:
+      name: winrm
+      elevated: true
     driver:
-      box: stromweld/windows-2022
-      gui: true
-      customize:
-        clipboard-mode: bidirectional
-        draganddrop: bidirectional
-        memory: 4096
+      image_urn: MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest
+      winrm_powershell_script: |-
+        Set-MpPreference -DisableRealtimeMonitoring $true
+        winrm quickconfig -q
+        Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+        Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
+
+  - name: Windows2025
+    os_type: windows
+    transport:
+      name: winrm
+      elevated: true
+    driver:
+      image_urn: MicrosoftWindowsServer:WindowsServer:2025-datacenter-azure-edition:latest
+      winrm_powershell_script: |-
+        Set-MpPreference -DisableRealtimeMonitoring $true
+        winrm quickconfig -q
+        Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP" -RemoteAddress Any -Enabled True
+        Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
 
 suites:
   - name: default
@@ -89,6 +111,8 @@ suites:
     verifier:
       inspec_tests:
         - compliance/profiles/client-run/controls
+      inputs:
+        client_interval: '5'
     attributes:
       audit:
         reporter: 'cli'

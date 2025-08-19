@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.8.0
+
+* Added the check-in attribute so that you can control the frequency of check-ins
+* Tested on Chef Client 18.8.11 (with upgrade)
+
 ## 1.7.1
 
 * Adding AZURE_TAGS variables to be pulled from Github Actions to follow Progress standards for kitchen

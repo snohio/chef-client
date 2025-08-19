@@ -89,6 +89,8 @@ suites:
     verifier:
       inspec_tests:
         - compliance/profiles/client-run/controls
+      inputs:
+        client_interval: '5'
     attributes:
       audit:
         reporter: 'cli'

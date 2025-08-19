@@ -15,14 +15,14 @@ case node['platform_family']
 when 'windows'
   chef_client_scheduled_task 'Run Chef Infra Client every 5 minutes' do
     frequency 'minute'
-    frequency_modifier 5
+    frequency_modifier node['chef']['client']['interval']
     use_consistent_splay true
     accept_chef_license true
   end
 
 when 'mac_os_x'
   chef_client_launchd 'Setup the Chef Infra Client to run every 5 minutes' do
-    interval 5
+    interval node['chef']['client']['interval']
     action :enable
     accept_chef_license true
   end
@@ -39,7 +39,7 @@ when 'rhel', 'debian'
   end
 
   chef_client_systemd_timer 'chef-client' do
-    interval '5min'
+    interval "#{node['chef']['client']['interval']}min"
     accept_chef_license true
   end
 end
