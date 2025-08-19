@@ -1,10 +1,11 @@
 name: client-run
-title: Run the chef-client every 5 minutes
+title: Run the chef-client at regular intervals
 maintainer: Mike Butler
 copyright: Snohio
 copyright_email: snohio@gmail.com
 license: Apache-2.0
-summary: Run the Chef Client every 5 Minutes
-version: 1.7.2
+summary: Run the Chef Client at regular intervals
+version: 1.8.0
 supports:
   platform: os
+  

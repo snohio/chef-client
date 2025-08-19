@@ -1,8 +1,10 @@
 # copyright: 2025, Mike Butler
 
+client_interval = input('client_interval', description: 'Chef Client Interval', value: '5')
+
 control 'chef-client' do
   impact 0.7
-  title 'Run the chef-client every 5 minutes'
+  title 'Run the chef-client at regular intervals'
 
   if os.windows?
     describe windows_task('chef-client') do
@@ -11,7 +13,7 @@ control 'chef-client' do
     end
     describe package('Chef*') do
       it { should be_installed }
-      its('version') { should cmp >= '17' }
+      its('version') { should cmp >= '18' }
     end
   elsif os.darwin?
 # THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
@@ -28,7 +30,7 @@ control 'chef-client' do
     end
     describe bash('pkgutil --pkgs | grep chef | xargs -I% pkgutil --pkg-info=%') do
       its('stdout') { should include('com.getchef.pkg.chef') }
-      its('stdout') { should include('version: 18.3.0') }
+      its('stdout') { should include('version: 18.8.11') }
     end
   else
     describe systemd_service('chef-client.timer') do
@@ -37,11 +39,11 @@ control 'chef-client' do
       it { should be_running }
     end
     describe file('/etc/systemd/system/chef-client.timer') do
-      its('content') { should include('OnUnitActiveSec=5min') }
+      its('content') { should include("OnUnitActiveSec=#{client_interval}min") }
     end
     describe package('chef') do
       it { should be_installed }
-      its('version') { should cmp >= '17' }
+      its('version') { should cmp >= '18' }
     end
   end
 end
