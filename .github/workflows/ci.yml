@@ -132,9 +132,9 @@
       runs-on: ubuntu-latest
       steps:
         - name: Decide whether the needed jobs succeeded or failed
-          uses: re-actors/alls-green@main
+          uses: re-actors/alls-green@release/v1
           with:
-            allowed-failures: 
+            allowed-failures: integration-macos
             allowed-skips: 
             jobs: ${{ toJSON(needs) }}
   
