@@ -17,14 +17,14 @@ control 'chef-client' do
     end
   elsif os.darwin?
 # THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
-#    describe launchd_service('chef.restarter') do
-#      it { should be_installed }
-#      it { should be_enabled }
-#    end
-#    describe launchd_service('chef.chef-client') do
-#      it { should be_installed }
-#      it { should be_enabled }
-#    end
+    describe launchd_service('chef.restarter') do
+      it { should be_installed }
+      it { should be_enabled }
+    end
+    describe launchd_service('chef.chef-client') do
+      it { should be_installed }
+      it { should be_enabled }
+    end
     describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
       its('content') { should include('<integer>300</integer>') }
     end
