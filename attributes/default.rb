@@ -1,6 +1,6 @@
 case node['platform_family']
 
-when 'rhel', 'debian', 'mac_os_x'
+when 'rhel', 'debian', 'mac_os_x', 'suse', 'fedora', 'amazon'
   default['chef']['filepath'] = '/etc/chef/client.pem'
 
 when 'windows'
