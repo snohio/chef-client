@@ -5,7 +5,7 @@
 
 include_profile 'chef-client::client-run'
 
-if node['chef']['client']['version'] > node['chef_packages']['chef']['version']
+if Gem::Version.new(node['chef']['client']['version']) > Gem::Version.new(node['chef_packages']['chef']['version'])
   node.default['chef_client_updater']['version'] = node['chef']['client']['version']
   include_recipe 'chef_client_updater::default'
 end
