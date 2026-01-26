@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
-## 1.9.0
+## 1.9.1
 
 * Added support for `suse` and `amazon` platform_family
 * Comparing gem versions of chef-client gem rather than package. This is going to need revisited again for Client 19 LTS
