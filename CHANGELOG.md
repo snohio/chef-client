@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+## 1.10.0
+
+* Include chef_client_updater 3.13.1 with license attribute to use the commercial download API.
+
 ## 1.9.1
 
 * Added support for `suse` and `amazon` platform_family

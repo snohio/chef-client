@@ -135,6 +135,6 @@
           uses: re-actors/alls-green@release/v1
           with:
             allowed-failures: integration-macos
-            allowed-skips: 
+            allowed-skips: ""
             jobs: ${{ toJSON(needs) }}
   
