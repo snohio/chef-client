@@ -8,7 +8,9 @@ when 'windows'
 
 end
 
-default['chef']['client']['version'] = '18.7.10'
+default['chef_client_updater']['license_id'] = 'your-license-id'
+
+default['chef']['client']['version'] = '18.10.17'
 default['chef']['client']['interval'] = '5'
 default['chef_client_updater']['channel'] = 'stable'
 default['chef_client_updater']['version'] = 'latest'
