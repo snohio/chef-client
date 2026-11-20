@@ -50,14 +50,8 @@ control 'chef-client' do
     describe file('/etc/systemd/system/chef-client.timer') do
       its('content') { should include("OnUnitActiveSec=#{client_interval}min") }
     end
-    describe.one do
-      describe bash("hab pkg list chef/chef-infra-client | head -n1 | awk -F'/' '{print $3}'") do
-        its('stdout.strip') { should cmp >= '18.11.11' }
-      end
-      describe package('chef') do
-        it { should be_installed }
-        its('version') { should cmp >= '18.11.11' }
-      end
+    describe bash("chef-client --version | awk '{print $NF}'") do
+      its('stdout.strip') { should cmp >= '18.11.11' }
     end
   end
 end
