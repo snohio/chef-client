@@ -10,9 +10,10 @@ driver:
 provisioner:
   name: chef_infra
   always_update_cookbooks: true
-  product_name: chef
-  product_version: 18
+  product_name: chef-ice
+  product_version: 19
   channel: stable
+  chef_license_key: <%= require "json"; ENV["CHEF_LICENSE_ID"].to_json %>
   max_retries: 3
   wait_for_retry: 90
   retry_on_exit_code: [1, 35, 213]
@@ -43,12 +44,14 @@ platforms:
     name: ssh
     ssh_key: ~/.ssh/id_kitchen-azurerm
 
-- name: SUSE15
+- name: openSUSE15
   driver:
-    image_urn: SUSE:sles-15-sp5:gen2:latest
+    image_urn: SUSE:opensuse-leap-15-6:gen2:latest
   transport:
     name: ssh
     ssh_key: ~/.ssh/id_kitchen-azurerm
+    connection_retries: 30
+    connection_retry_sleep: 5
 
 - name: RHEL7
   driver:

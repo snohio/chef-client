@@ -12,8 +12,17 @@ This is my favorite example. This utilizes the Azure configuration in the secret
 * CLIENT_ID
 * CLIENT_SECRET
 * TENANT_ID
+* CHEF_LICENSE_ID
 
-Enter those into a New Repository Secret with their values. If you use Azure locally for kitchen testing, they will be in your '~/.azure/credentials' folder.
+Enter those as repository secrets. If you use Azure locally for kitchen testing,
+the Azure credentials will be in your '~/.azure/credentials' folder.
+
+The Azure CI job installs Chef Workstation Enterprise 26 from the commercial
+download API. It includes Test Kitchen Enterprise, which provides the
+`chef_infra` provisioner. `CHEF_LICENSE_ID` must be a license ID entitled for
+commercial downloads; it is also supplied to Kitchen for Chef downloads and
+verification. Set it in your environment for local Azure testing as well. Define
+the `AZURE_TAGS` repository variable for resource tags.
 
 This one is the one I test against the most number of OSes. More can be added of course if you know the Azure Image URN.
 
