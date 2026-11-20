@@ -44,12 +44,14 @@ platforms:
     name: ssh
     ssh_key: ~/.ssh/id_kitchen-azurerm
 
-- name: SUSE15
+- name: openSUSE15
   driver:
-    image_urn: SUSE:sles-15-sp5:gen2:latest
+    image_urn: SUSE:opensuse-leap-15-6:gen2:latest
   transport:
     name: ssh
     ssh_key: ~/.ssh/id_kitchen-azurerm
+    connection_retries: 30
+    connection_retry_sleep: 5
 
 - name: RHEL7
   driver:

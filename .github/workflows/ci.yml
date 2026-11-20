@@ -33,7 +33,7 @@
             - ubuntu24
             - RHEL8
             - RHEL9
-            - SUSE15
+            - openSUSE15
             - Windows2019
             - Windows2022
             - Windows-10
