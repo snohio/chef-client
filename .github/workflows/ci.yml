@@ -42,6 +42,9 @@
           uses: actions/checkout@main
         - name: Install Chef
           uses: actionshub/chef-install@main
+          with:
+            license: ${{ secrets.CHEF_LICENSE_ID }}
+            project: chef-workstation
         - name: Azure Credentials
           run: | 
             mkdir ~/.azure
@@ -51,6 +54,7 @@
             client_secret = "${{ secrets.CLIENT_SECRET }}"
             tenant_id = "${{ secrets.TENANT_ID }}"
             EOF
+            export CHEF_LICENSE_ID=${{ secrets.CHEF_LICENSE_ID }}
         - name: Test-Kitchen Converge
           uses: actionshub/test-kitchen@main
           with:

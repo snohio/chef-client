@@ -5,7 +5,12 @@
 
 include_profile 'chef-client::client-run'
 
-if node['chef']['client']['version'] > node['chef_packages']['chef']['version']
+hab_chef_client_installed = [
+  '/hab/pkgs/chef/chef-infra-client/*/*',
+  'C:/hab/pkgs/chef/chef-infra-client/*/*'
+].any? { |path| ::Dir.glob(path).any? }
+
+if !hab_chef_client_installed && Gem::Version.new(node['chef']['client']['version']) > Gem::Version.new(node['chef_packages']['chef']['version'])
   node.default['chef_client_updater']['version'] = node['chef']['client']['version']
   include_recipe 'chef_client_updater::default'
 end
@@ -13,7 +18,7 @@ end
 case node['platform_family']
 
 when 'windows'
-  chef_client_scheduled_task 'Run Chef Infra Client every 5 minutes' do
+  chef_client_scheduled_task 'Run Chef Infra Client every x minutes' do
     frequency 'minute'
     frequency_modifier node['chef']['client']['interval']
     use_consistent_splay true
@@ -21,7 +26,7 @@ when 'windows'
   end
 
 when 'mac_os_x'
-  chef_client_launchd 'Setup the Chef Infra Client to run every 5 minutes' do
+  chef_client_launchd 'Setup the Chef Infra Client to run every x minutes' do
     interval node['chef']['client']['interval']
     action :enable
     accept_chef_license true
@@ -29,7 +34,7 @@ when 'mac_os_x'
   if tagged?('debug')
     include_recipe 'chef-client::macos'
   end
-when 'rhel', 'debian'
+when 'rhel', 'debian', 'suse'
   chef_client_cron 'chef_client_run' do
     action :remove
   end

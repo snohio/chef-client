@@ -13,6 +13,7 @@ provisioner:
   product_name: chef
   product_version: 18
   channel: stable
+  chef_license_key: <%= ENV["CHEF_LICENSE_ID"] %>
   max_retries: 3
   wait_for_retry: 90
   retry_on_exit_code: [35, 213]

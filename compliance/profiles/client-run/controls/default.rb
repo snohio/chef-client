@@ -11,9 +11,12 @@ control 'chef-client' do
       it { should exist }
       it { should be_enabled }
     end
-    describe package('Chef*') do
-      it { should be_installed }
-      its('version') { should cmp >= '18' }
+    describe powershell('hab pkg list chef/chef-infra-client') do
+      its('stdout') { should include('chef/chef-infra-client') }
+      its('stdout') { should match(%r{chef/chef-infra-client/}) }
+    end
+    describe powershell("$pkg = hab pkg list chef/chef-infra-client | Select-Object -First 1; if ($pkg) { $pkg.ToString().Split('/')[2] }") do
+      its('stdout.strip') { should cmp >= '18.11.11' }
     end
   elsif os.darwin?
 # THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
@@ -28,9 +31,12 @@ control 'chef-client' do
     describe file('/Library/LaunchDaemons/com.chef.chef-client.plist') do
       its('content') { should include('<integer>300</integer>') }
     end
-    describe bash('pkgutil --pkgs | grep chef | xargs -I% pkgutil --pkg-info=%') do
-      its('stdout') { should include('com.getchef.pkg.chef') }
-      its('stdout') { should include('version: 18.8.11') }
+    describe bash('hab pkg list chef/chef-infra-client') do
+      its('stdout') { should include('chef/chef-infra-client') }
+      its('stdout') { should match(%r{chef/chef-infra-client/}) }
+    end
+    describe bash("hab pkg list chef/chef-infra-client | head -n1 | awk -F'/' '{print $3}'") do
+      its('stdout.strip') { should cmp >= '18.11.11' }
     end
   else
     describe systemd_service('chef-client.timer') do
@@ -41,9 +47,12 @@ control 'chef-client' do
     describe file('/etc/systemd/system/chef-client.timer') do
       its('content') { should include("OnUnitActiveSec=#{client_interval}min") }
     end
-    describe package('chef') do
-      it { should be_installed }
-      its('version') { should cmp >= '18' }
+    describe bash('hab pkg list chef/chef-infra-client') do
+      its('stdout') { should include('chef/chef-infra-client') }
+      its('stdout') { should match(%r{chef/chef-infra-client/}) }
+    end
+    describe bash("hab pkg list chef/chef-infra-client | head -n1 | awk -F'/' '{print $3}'") do
+      its('stdout.strip') { should cmp >= '18.11.11' }
     end
   end
 end

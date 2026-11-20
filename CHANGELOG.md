@@ -2,6 +2,21 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
+
+## 1.10.1
+
+* Updated InSpec to support Hab based packaging
+* Updated CI to support new Chef versions.
+
+## 1.10.0
+
+* Include chef_client_updater 3.13.1 with license attribute to use the commercial download API.
+
+## 1.9.1
+
+* Added support for `suse` and `amazon` platform_family
+* Comparing gem versions of chef-client gem rather than package. This is going to need revisited again for Client 19 LTS
+
 ## 1.8.0
 
 * Added the check-in attribute so that you can control the frequency of check-ins
