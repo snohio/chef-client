@@ -2,7 +2,6 @@
 
 This file is used to list changes made in each version of the chef-client cookbook.
 
-
 ## 1.10.1
 
 * Updated InSpec to support Hab based packaging

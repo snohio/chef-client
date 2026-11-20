@@ -34,7 +34,7 @@ when 'mac_os_x'
   if tagged?('debug')
     include_recipe 'chef-client::macos'
   end
-when 'rhel', 'debian', 'suse'
+when 'rhel', 'debian', 'suse', 'fedora', 'amazon'
   chef_client_cron 'chef_client_run' do
     action :remove
   end
