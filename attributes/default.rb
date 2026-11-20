@@ -18,7 +18,5 @@ default['chef_client_updater']['version'] = 'latest'
 default['audit']['compliance_phase'] = true
 default['audit']['reporter'] = 'chef-server-automate', 'cli'
 default['audit']['attributes'] = {
-  'client_interval' => node['chef']['client']['interval']
+  'client_interval' => node['chef']['client']['interval'],
 }
-
-

@@ -21,7 +21,7 @@ control 'chef-client' do
       end
     end
   elsif os.darwin?
-# THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
+    # THESE ARE BROKEN WHEN RUNNING INSPEC AGAINST THE SERVER OUTSIDE OF THE CLIENT RUN
     describe launchd_service('chef.restarter') do
       it { should be_installed }
       it { should be_enabled }

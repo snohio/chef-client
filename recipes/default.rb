@@ -7,7 +7,7 @@ include_profile 'chef-client::client-run'
 
 hab_chef_client_installed = [
   '/hab/pkgs/chef/chef-infra-client/*/*',
-  'C:/hab/pkgs/chef/chef-infra-client/*/*'
+  'C:/hab/pkgs/chef/chef-infra-client/*/*',
 ].any? { |path| ::Dir.glob(path).any? }
 
 if !hab_chef_client_installed && Gem::Version.new(node['chef']['client']['version']) > Gem::Version.new(node['chef_packages']['chef']['version'])
