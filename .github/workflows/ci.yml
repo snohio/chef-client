@@ -18,7 +18,6 @@
     integration-azure:
       runs-on: ubuntu-latest
       env:
-        CHEF_LICENSE_ID: ${{ secrets.CHEF_LICENSE_ID }}
         CHEF_LICENSE_KEY: ${{ secrets.CHEF_LICENSE_ID }}
         AZURE_TAGS: ${{ vars.AZURE_TAGS }}
       needs:
@@ -117,6 +116,11 @@
           uses: actions/checkout@main
         - name: Install Chef
           uses: actionshub/chef-install@main
+          with:
+            project: chef-workstation-enterprise
+            version: 26.2.0
+            chefDownloadUrl: chefdownload-commercial.chef.io
+            license: ${{ secrets.CHEF_LICENSE_ID }}
         - name: Test-Kitchen Converge
           uses: actionshub/test-kitchen@main
           with:

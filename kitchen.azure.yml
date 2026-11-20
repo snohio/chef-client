@@ -10,8 +10,8 @@ driver:
 provisioner:
   name: chef_infra
   always_update_cookbooks: true
-  product_name: chef
-  product_version: 18
+  product_name: chef-ice
+  product_version: 19
   channel: stable
   chef_license_key: <%= require "json"; ENV["CHEF_LICENSE_ID"].to_json %>
   max_retries: 3
