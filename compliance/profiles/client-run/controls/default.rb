@@ -65,10 +65,6 @@ control 'chef-client' do
     describe file('/etc/systemd/system/chef-client.timer') do
       its('content') { should include("OnUnitActiveSec=#{client_interval}min") }
     end
-<<<<<<< HEAD
-    describe bash("chef-client --version | awk '{print $NF}'") do
-      its('stdout.strip') { should cmp >= '18.11.11' }
-=======
     client_package = if package('chef-ice').installed?
                        'chef-ice'
                      elsif package('chef').installed?
@@ -95,7 +91,6 @@ control 'chef-client' do
         its('exit_status') { should eq 0 }
         its('stdout.strip') { should cmp >= '18.11.11' }
       end
->>>>>>> 82ca526 (1.10.1 final cut)
     end
   end
 end
