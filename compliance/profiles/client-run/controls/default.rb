@@ -11,7 +11,9 @@ control 'chef-client' do
       it { should exist }
       it { should be_enabled }
     end
-    client_package = if package('Chef Infra Client Enterprise*').installed?
+    client_package = if package('Chef Infra (air-gapped) - chef-ice').installed?
+                       'Chef Infra (air-gapped) - chef-ice'
+                     elsif package('Chef Infra Client Enterprise*').installed?
                        'Chef Infra Client Enterprise*'
                      elsif package('Chef Infra Client v*').installed?
                        'Chef Infra Client v*'
@@ -22,7 +24,7 @@ control 'chef-client' do
         its('version') { should cmp >= '18.11.11' }
       end
     else
-      describe powershell(<<~'POWERSHELL') do
+      habitat_package = powershell(<<~'POWERSHELL')
         $path = & hab pkg path chef/chef-infra-client
         if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
         if (-not $path) {
@@ -31,7 +33,8 @@ control 'chef-client' do
         }
         ($path -split '[/\\]')[-2]
       POWERSHELL
-        its('exit_status') { should eq 0 }
+      describe habitat_package do
+        its('exit_status') { should eq(0), "Habitat package lookup failed: #{habitat_package.stderr}" }
         its('stdout.strip') { should cmp >= '18.11.11' }
       end
     end
